@@ -24,11 +24,21 @@ int GameScr::Run(sf::RenderWindow &win){
  
 	bool Running=true;
 
-    sf::Texture obr1;
+    sf::Texture obr1,obr2,obr3,obr4;
     obr1.loadFromFile( "gametest.png" );
+	obr2.loadFromFile( "Inventoryclc.png" );
+	obr3.loadFromFile( "Goclc.png" );
+	obr4.loadFromFile( "Hideoutclc.png" );
 
-    sf::Sprite bg;
+    sf::Sprite bg,inv,go,hide;
     bg.setTexture( obr1 );	
+	inv.setTexture( obr2 );
+	go.setTexture( obr3 );
+	hide.setTexture( obr4 );
+
+	inv.setPosition(781,627);
+	go.setPosition(505,574);
+	hide.setPosition(199,626);
 
 	sf::Event zdarzenie;
 	while (Running){
@@ -37,8 +47,19 @@ int GameScr::Run(sf::RenderWindow &win){
         {
 			if( zdarzenie.type == sf::Event::KeyReleased && zdarzenie.key.code == sf::Keyboard::Escape ) return (0);
 		}
-		
-	win.draw(bg);
+win.draw(bg);
+
+	if (CorrectM(inv, win)) {
+				win.draw( inv );
+			}
+	if (CorrectM(go, win)) {
+				win.draw( go );
+			}
+	if (CorrectM(hide, win)) {
+				win.draw( hide );
+			}
+	
+
 	win.display();
 	}
 
